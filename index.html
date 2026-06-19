@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAYA MEDIA — Automotive Photography & Videography</title>
+<meta name="description" content="Automotive photography and videography for social media. Vertical reels, editorial stills, built for the feed.">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          asphalt: '#0B0C0E',
+          concrete: '#17181B',
+          steel: '#C9CDD2',
+          chalk: '#F2F1ED',
+          ignite: '#FF4621',
+        },
+        fontFamily: {
+          display: ['"Saira Condensed"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #0B0C0E; }
+
+  .tracked { letter-spacing: 0.12em; }
+  .tracked-lg { letter-spacing: 0.22em; }
+
+  /* Livery diagonal cut */
+  .cut-edge {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%);
+  }
+  .cut-edge-top {
+    clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Marquee ticker */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Gallery item reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reel scroll snap */
+  .reel-track {
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .reel-track::-webkit-scrollbar { display: none; }
+  .reel-item { scroll-snap-align: start; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .reveal { transition: none; opacity: 1; transform: none; }
+  }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #FF4621;
+    outline-offset: 3px;
+  }
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+</style>
+</head>
+<body class="font-body text-chalk antialiased selection:bg-ignite selection:text-asphalt">
+
+<!-- Grain overlay -->
+<div class="fixed inset-0 z-50 grain"></div>
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-40 backdrop-blur-sm bg-asphalt/70 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display font-800 text-xl tracked text-chalk">DAYA<span class="text-ignite">MEDIA</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm tracked uppercase text-steel">
+      <a href="#reels" class="hover:text-chalk transition-colors">Reels</a>
+      <a href="#gallery" class="hover:text-chalk transition-colors">Gallery</a>
+      <a href="#about" class="hover:text-chalk transition-colors">About</a>
+      <a href="#contact" class="hover:text-chalk transition-colors">Contact</a>
+    </nav>
+    <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-2 text-sm tracked uppercase border border-steel/40 px-4 py-2 hover:border-ignite hover:text-ignite transition-colors">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @dayamediaa
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative h-screen min-h-[640px] flex items-end overflow-hidden bg-asphalt">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81e?q=80&w=1600&auto=format&fit=crop"
+         alt="Automotive editorial photography backdrop"
+         class="w-full h-full object-cover opacity-50">
+    <div class="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-asphalt/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-asphalt/60 via-transparent to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 pb-16 md:pb-24">
+    <p class="tracked-lg uppercase text-ignite text-xs md:text-sm mb-4">Automotive · Built for the Feed</p>
+    <h1 class="font-display font-900 uppercase leading-[0.92] text-[14vw] md:text-[7.5vw] lg:text-[6.2vw] text-chalk">
+      Shot to <br class="hidden md:block"> Stop the<br><span class="text-ignite">Scroll.</span>
+    </h1>
+    <div class="mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-white/15 pt-6">
+      <p class="max-w-md text-steel text-base md:text-lg">
+        Vertical-first photography and videography for car culture — reels, stills, and editorial content engineered for Instagram and TikTok.
+      </p>
+      <div class="flex gap-4">
+        <a href="#reels" class="font-display font-700 uppercase tracked text-sm bg-ignite text-asphalt px-6 py-3 hover:bg-chalk transition-colors">Watch Reels</a>
+        <a href="#gallery" class="font-display font-700 uppercase tracked text-sm border border-steel/50 px-6 py-3 hover:border-chalk transition-colors">View Gallery</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="bg-ignite text-asphalt overflow-hidden border-y border-asphalt/20">
+  <div class="marquee-track py-2.5 font-display font-700 uppercase text-sm tracked">
+    <div class="flex">
+      <span class="px-6">Vertical Reels</span><span class="px-6">/</span>
+      <span class="px-6">4:5 Editorial Stills</span><span class="px-6">/</span>
+      <span class="px-6">Car Culture</span><span class="px-6">/</span>
+      <span class="px-6">Social-First Content</span><span class="px-6">/</span>
+      <span class="px-6">Track Days</span><span class="px-6">/</span>
+      <span class="px-6">Builds & Meets</span><span class="px-6">/</span>
+    </div>
+    <div class="flex" aria-hidden="true">
+      <span class="px-6">Vertical Reels</span><span class="px-6">/</span>
+      <span class="px-6">4:5 Editorial Stills</span><span class="px-6">/</span>
+      <span class="px-6">Car Culture</span><span class="px-6">/</span>
+      <span class="px-6">Social-First Content</span><span class="px-6">/</span>
+      <span class="px-6">Track Days</span><span class="px-6">/</span>
+      <span class="px-6">Builds & Meets</span><span class="px-6">/</span>
+    </div>
+  </div>
+</div>
+
+<!-- REELS -->
+<section id="reels" class="bg-asphalt py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="flex items-end justify-between mb-10 border-b border-white/10 pb-6">
+      <div>
+        <p class="tracked-lg uppercase text-ignite text-xs mb-2">01 — Motion</p>
+        <h2 class="font-display font-900 uppercase text-4xl md:text-6xl">Reels</h2>
+      </div>
+      <p class="hidden md:block text-steel text-sm max-w-xs text-right">Embedded vertical video, native 9:16 — swipe to explore.</p>
+    </div>
+
+    <div id="reel-track" class="reel-track flex gap-5 overflow-x-auto pb-4 -mx-6 px-6 md:-mx-10 md:px-10">
+
+      <!-- Reel Card Template x5 -->
+      <div class="reel-item flex-none w-[260px] md:w-[300px]">
+        <div class="relative aspect-[9/16] bg-concrete cut-edge overflow-hidden group">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+            title="Reel 1 — Night Drive Edit" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="mt-3 font-display font-700 uppercase tracked text-sm">Night Drive Edit</p>
+        <p class="text-steel text-xs">Reel · 0:32</p>
+      </div>
+
+      <div class="reel-item flex-none w-[260px] md:w-[300px]">
+        <div class="relative aspect-[9/16] bg-concrete cut-edge overflow-hidden">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+            title="Reel 2 — Canyon Run" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="mt-3 font-display font-700 uppercase tracked text-sm">Canyon Run</p>
+        <p class="text-steel text-xs">Reel · 0:28</p>
+      </div>
+
+      <div class="reel-item flex-none w-[260px] md:w-[300px]">
+        <div class="relative aspect-[9/16] bg-concrete cut-edge overflow-hidden">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+            title="Reel 3 — Garage Build" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="mt-3 font-display font-700 uppercase tracked text-sm">Garage Build</p>
+        <p class="text-steel text-xs">Reel · 0:45</p>
+      </div>
+
+      <div class="reel-item flex-none w-[260px] md:w-[300px]">
+        <div class="relative aspect-[9/16] bg-concrete cut-edge overflow-hidden">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+            title="Reel 4 — Meet Recap" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="mt-3 font-display font-700 uppercase tracked text-sm">Meet Recap</p>
+        <p class="text-steel text-xs">Reel · 0:51</p>
+      </div>
+
+      <div class="reel-item flex-none w-[260px] md:w-[300px]">
+        <div class="relative aspect-[9/16] bg-concrete cut-edge overflow-hidden">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&playsinline=1"
+            title="Reel 5 — Track Day" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="mt-3 font-display font-700 uppercase tracked text-sm">Track Day</p>
+        <p class="text-steel text-xs">Reel · 0:38</p>
+      </div>
+
+    </div>
+
+    <p class="mt-2 text-steel/60 text-xs tracked uppercase">Swipe / drag to view more →</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="bg-concrete py-20 md:py-28 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="flex items-end justify-between mb-10 border-b border-white/10 pb-6">
+      <div>
+        <p class="tracked-lg uppercase text-ignite text-xs mb-2">02 — Stills</p>
+        <h2 class="font-display font-900 uppercase text-4xl md:text-6xl">Gallery</h2>
+      </div>
+      <p class="hidden md:block text-steel text-sm max-w-xs text-right">Editorial 4:5 frames, shot for the feed.</p>
+    </div>
+
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <!-- 4:5 images injected/listed -->
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="Supra MK4 · Golden Hour">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=900&auto=format&fit=crop" alt="Supra at golden hour" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">Supra MK4 · Golden Hour</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="RX-7 · Studio">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=900&auto=format&fit=crop" alt="RX-7 studio shot" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">RX-7 · Studio</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="GT-R · Night Run">
+        <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?q=80&w=900&auto=format&fit=crop" alt="GT-R at night" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">GT-R · Night Run</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="M3 E46 · Canyon">
+        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=900&auto=format&fit=crop" alt="M3 in canyon" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">M3 E46 · Canyon</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="Civic Type R · Track">
+        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=900&auto=format&fit=crop" alt="Civic Type R track" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">Civic Type R · Track</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="911 · Coastal">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?q=80&w=900&auto=format&fit=crop" alt="911 coastal road" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">911 · Coastal</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="Mustang · Industrial">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=900&auto=format&fit=crop" alt="Mustang industrial backdrop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">Mustang · Industrial</span>
+        </div>
+      </a>
+      <a href="#" class="gallery-item reveal group relative aspect-[4/5] overflow-hidden bg-asphalt" data-cap="Detail · Wheel & Brake">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=900&auto=format&fit=crop&sat=-50" alt="Wheel detail shot" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-asphalt/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+          <span class="font-display tracked uppercase text-xs">Detail · Wheel & Brake</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 font-display font-700 uppercase tracked text-sm border border-steel/40 px-6 py-3 hover:border-ignite hover:text-ignite transition-colors">
+        See the Full Feed on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="bg-asphalt py-20 md:py-28 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="tracked-lg uppercase text-ignite text-xs mb-3">03 — Behind the Lens</p>
+      <h2 class="font-display font-900 uppercase text-4xl md:text-5xl mb-6 leading-tight">Built in the Garage,<br>Shot on the Street.</h2>
+      <p class="text-steel text-base md:text-lg leading-relaxed mb-6">
+        Daya Media specializes in automotive content engineered specifically for social media — vertical reels, 4:5 editorial stills, and quick-turn edits that move at the speed of the feed. From meets and track days to studio builds, every frame is shot to be scrolled, shared, and saved.
+      </p>
+      <ul class="grid grid-cols-2 gap-4 text-sm tracked uppercase text-steel">
+        <li class="border-l-2 border-ignite pl-3">Vertical Video</li>
+        <li class="border-l-2 border-ignite pl-3">4:5 Photography</li>
+        <li class="border-l-2 border-ignite pl-3">Reel Editing</li>
+        <li class="border-l-2 border-ignite pl-3">Content Strategy</li>
+      </ul>
+    </div>
+    <div class="relative aspect-[4/5] cut-edge-top overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=900&auto=format&fit=crop" alt="Photographer shooting an automotive subject" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-ignite text-asphalt py-20 md:py-28 cut-edge-top">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
+    <p class="tracked-lg uppercase text-xs mb-3 opacity-70">Let's Make Something</p>
+    <h2 class="font-display font-900 uppercase text-5xl md:text-7xl mb-8 leading-[0.95]">Got a Car?<br>Let's Shoot It.</h2>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+         class="font-display font-700 uppercase tracked text-sm bg-asphalt text-chalk px-8 py-4 hover:bg-concrete transition-colors">
+        DM on Instagram — @dayamediaa
+      </a>
+      <a href="mailto:hello@dayamedia.co"
+         class="font-display font-700 uppercase tracked text-sm border-2 border-asphalt px-8 py-4 hover:bg-asphalt hover:text-chalk transition-colors">
+        Email Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-asphalt border-t border-white/10 py-10">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-steel text-xs tracked uppercase">
+    <span>© <span id="year"></span> Daya Media. All rights reserved.</span>
+    <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer" class="hover:text-ignite transition-colors">Instagram — @dayamediaa</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveal for gallery
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
