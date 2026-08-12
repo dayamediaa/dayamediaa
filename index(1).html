@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAYA MEDIA — Automotive Photography & Videography</title>
+<meta name="description" content="Automotive photography and videography for social media. Vertical reels, editorial stills, built for the feed.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          asphalt: '#0B0C0E',
+          concrete: '#17181B',
+          steel: '#C9CDD2',
+          chalk: '#F2F1ED',
+          ignite: '#FF4621',
+        },
+        fontFamily: {
+          display: ['"Saira Condensed"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #0B0C0E; }
+  .tracked { letter-spacing: 0.12em; }
+  .tracked-lg { letter-spacing: 0.22em; }
+  .cut-edge { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%); }
+  .cut-edge-top { clip-path: polygon(0 28px, 100% 0, 100% 100%, 0 100%); }
+  .marquee-track { display:flex; width:max-content; animation: marquee 32s linear infinite; }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease,transform .6s ease; }
+  .reveal.in { opacity:1; transform:translateY(0); }
+  .reel-track { scroll-snap-type:x mandatory; -ms-overflow-style:none; scrollbar-width:none; }
+  .reel-track::-webkit-scrollbar { display:none; }
+  .reel-item { scroll-snap-align:start; }
+  /* Lightbox */
+  #lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(11,12,14,.97); align-items:center; justify-content:center; }
+  #lightbox.open { display:flex; }
+  #lb-img { max-height:92vh; max-width:92vw; object-fit:contain; }
+  a:focus-visible,button:focus-visible { outline:2px solid #FF4621; outline-offset:3px; }
+  @media(prefers-reduced-motion:reduce){ .marquee-track{animation:none;} .reveal{transition:none;opacity:1;transform:none;} }
+</style>
+</head>
+<body class="font-body text-chalk antialiased selection:bg-ignite selection:text-asphalt">
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button onclick="closeLightbox()" class="absolute top-5 right-6 text-steel hover:text-chalk text-3xl leading-none" aria-label="Close">&times;</button>
+  <button onclick="stepLightbox(-1)" class="absolute left-4 text-steel hover:text-chalk text-4xl px-3 py-6" aria-label="Previous">&#8249;</button>
+  <img id="lb-img" src="" alt="">
+  <button onclick="stepLightbox(1)" class="absolute right-4 text-steel hover:text-chalk text-4xl px-3 py-6" aria-label="Next">&#8250;</button>
+</div>
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-40 backdrop-blur-sm bg-asphalt/70 border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display font-800 text-xl tracked text-chalk">DAYA<span class="text-ignite">MEDIA</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm tracked uppercase text-steel">
+      <a href="#reels" class="hover:text-chalk transition-colors">Reels</a>
+      <a href="#gallery" class="hover:text-chalk transition-colors">Gallery</a>
+      <a href="#about" class="hover:text-chalk transition-colors">About</a>
+      <a href="#contact" class="hover:text-chalk transition-colors">Contact</a>
+    </nav>
+    <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-2 text-xs md:text-sm tracked uppercase border border-steel/40 px-3 md:px-4 py-2 hover:border-ignite hover:text-ignite transition-colors">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @dayamediaa
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative h-screen min-h-[600px] flex items-end overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="media/photos/DSC02161.jpg" alt="Automotive editorial hero" class="w-full h-full object-cover opacity-55">
+    <div class="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/40 to-asphalt/10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-asphalt/70 via-transparent to-transparent"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-5 md:px-10 pb-16 md:pb-24">
+    <p class="tracked-lg uppercase text-ignite text-xs md:text-sm mb-4">Automotive · Built for the Feed</p>
+    <h1 class="font-display font-900 uppercase leading-[0.9] text-[16vw] md:text-[8vw] lg:text-[6.5vw] text-chalk">
+      Shot to<br class="hidden md:block"> Stop the<br><span class="text-ignite">Scroll.</span>
+    </h1>
+    <div class="mt-8 flex flex-wrap items-end justify-between gap-5 border-t border-white/15 pt-6">
+      <p class="max-w-md text-steel text-base md:text-lg leading-relaxed">
+        Vertical-first photography and videography for car culture — reels, editorial stills, and social content engineered for Instagram.
+      </p>
+      <div class="flex gap-3 md:gap-4">
+        <a href="#reels" class="font-display font-700 uppercase tracked text-sm bg-ignite text-asphalt px-5 md:px-6 py-3 hover:bg-chalk transition-colors">Watch Reels</a>
+        <a href="#gallery" class="font-display font-700 uppercase tracked text-sm border border-steel/50 px-5 md:px-6 py-3 hover:border-chalk transition-colors">View Gallery</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="bg-ignite text-asphalt overflow-hidden">
+  <div class="marquee-track py-3 font-display font-700 uppercase text-sm tracked">
+    <div class="flex whitespace-nowrap">
+      <span class="px-6">Vertical Reels</span><span class="px-3">/</span>
+      <span class="px-6">4:5 Editorial Stills</span><span class="px-3">/</span>
+      <span class="px-6">Exotic Cars</span><span class="px-3">/</span>
+      <span class="px-6">Social-First Content</span><span class="px-3">/</span>
+      <span class="px-6">Track Days</span><span class="px-3">/</span>
+      <span class="px-6">Builds & Meets</span><span class="px-3">/</span>
+      <span class="px-6">Detail Shoots</span><span class="px-3">/</span>
+    </div>
+    <div class="flex whitespace-nowrap" aria-hidden="true">
+      <span class="px-6">Vertical Reels</span><span class="px-3">/</span>
+      <span class="px-6">4:5 Editorial Stills</span><span class="px-3">/</span>
+      <span class="px-6">Exotic Cars</span><span class="px-3">/</span>
+      <span class="px-6">Social-First Content</span><span class="px-3">/</span>
+      <span class="px-6">Track Days</span><span class="px-3">/</span>
+      <span class="px-6">Builds & Meets</span><span class="px-3">/</span>
+      <span class="px-6">Detail Shoots</span><span class="px-3">/</span>
+    </div>
+  </div>
+</div>
+
+<!-- REELS -->
+<section id="reels" class="bg-asphalt py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5 md:px-10">
+    <div class="flex items-end justify-between mb-10 border-b border-white/10 pb-6">
+      <div>
+        <p class="tracked-lg uppercase text-ignite text-xs mb-2">01 — Motion</p>
+        <h2 class="font-display font-900 uppercase text-4xl md:text-6xl">Reels</h2>
+      </div>
+      <p class="hidden md:block text-steel text-sm max-w-xs text-right">27 vertical reels — swipe to explore.</p>
+    </div>
+    <div id="reel-track" class="reel-track flex gap-4 md:gap-5 overflow-x-auto pb-4 -mx-5 px-5 md:-mx-10 md:px-10"></div>
+    <p class="mt-3 text-steel/50 text-xs tracked uppercase">← Swipe or drag to view all 27 reels →</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="bg-concrete py-20 md:py-28 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-10">
+    <div class="flex items-end justify-between mb-10 border-b border-white/10 pb-6">
+      <div>
+        <p class="tracked-lg uppercase text-ignite text-xs mb-2">02 — Stills</p>
+        <h2 class="font-display font-900 uppercase text-4xl md:text-6xl">Gallery</h2>
+      </div>
+      <p id="gallery-count" class="hidden md:block text-steel text-sm text-right"></p>
+    </div>
+    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"></div>
+    <div class="mt-10 text-center">
+      <button id="load-more" class="font-display font-700 uppercase tracked text-sm border border-steel/40 px-8 py-3 hover:border-ignite hover:text-ignite transition-colors">
+        Load More
+      </button>
+    </div>
+    <div class="mt-10 text-center">
+      <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 font-display font-700 uppercase tracked text-sm text-steel hover:text-ignite transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        See More on Instagram — @dayamediaa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="bg-asphalt py-20 md:py-28 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-10 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div>
+      <p class="tracked-lg uppercase text-ignite text-xs mb-3">03 — Behind the Lens</p>
+      <h2 class="font-display font-900 uppercase text-4xl md:text-5xl mb-6 leading-tight">Built in the Garage,<br>Shot on the Street.</h2>
+      <p class="text-steel text-base md:text-lg leading-relaxed mb-8">
+        Daya Media creates automotive content engineered for social media — vertical reels, 4:5 editorial stills, and quick-turn edits built for the feed. From exotics and track days to detail shoots and car meets, every frame is shot to be scrolled, shared, and saved.
+      </p>
+      <ul class="grid grid-cols-2 gap-3 text-sm tracked uppercase text-steel">
+        <li class="border-l-2 border-ignite pl-3">Vertical Video</li>
+        <li class="border-l-2 border-ignite pl-3">4:5 Photography</li>
+        <li class="border-l-2 border-ignite pl-3">Reel Editing</li>
+        <li class="border-l-2 border-ignite pl-3">Exotic Cars</li>
+        <li class="border-l-2 border-ignite pl-3">Track Coverage</li>
+        <li class="border-l-2 border-ignite pl-3">Detail Shoots</li>
+      </ul>
+    </div>
+    <div class="relative aspect-[4/5] cut-edge-top overflow-hidden">
+      <img src="media/photos/DSC09800.jpg" alt="Daya Media automotive photography" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-ignite text-asphalt py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5 md:px-10 text-center">
+    <p class="tracked-lg uppercase text-xs mb-3 opacity-60">Let's Make Something</p>
+    <h2 class="font-display font-900 uppercase text-5xl md:text-7xl mb-8 leading-[0.92]">Got a Car?<br>Let's Shoot It.</h2>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer"
+         class="font-display font-700 uppercase tracked text-sm bg-asphalt text-chalk px-8 py-4 hover:bg-concrete transition-colors">
+        DM on Instagram — @dayamediaa
+      </a>
+      <a href="mailto:hello@dayamedia.co"
+         class="font-display font-700 uppercase tracked text-sm border-2 border-asphalt px-8 py-4 hover:bg-asphalt hover:text-chalk transition-colors">
+        Send an Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-asphalt border-t border-white/10 py-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-10 flex flex-col md:flex-row items-center justify-between gap-3 text-steel text-xs tracked uppercase">
+    <span>© <span id="year"></span> Daya Media. All rights reserved.</span>
+    <a href="https://www.instagram.com/dayamediaa/" target="_blank" rel="noopener noreferrer" class="hover:text-ignite transition-colors">@dayamediaa</a>
+  </div>
+</footer>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────
+const PHOTOS = ["DSC00153.jpg","DSC00163.jpg","DSC00170.jpg","DSC00245.jpg","DSC00281.jpg","DSC00445.jpg","DSC00453.jpg","DSC00497.jpg","DSC00506.jpg","DSC00510.jpg","DSC00550.jpg","DSC00558.jpg","DSC00573.jpg","DSC00578.jpg","DSC00597.jpg","DSC00601.jpg","DSC01302.jpg","DSC01316.jpg","DSC01336.jpg","DSC01381.jpg","DSC01399.jpg","DSC01404.jpg","DSC01468.jpg","DSC01471.jpg","DSC01473.jpg","DSC01527.jpg","DSC01534.jpg","DSC01547.jpg","DSC01557.jpg","DSC01561.jpg","DSC01600.jpg","DSC01621.jpg","DSC01633.jpg","DSC01654.jpg","DSC01686.jpg","DSC01870.jpg","DSC01883.jpg","DSC01888.jpg","DSC01910.jpg","DSC01933.jpg","DSC01954.jpg","DSC01966.jpg","DSC01988.jpg","DSC01994.jpg","DSC02129.jpg","DSC02138.jpg","DSC02150.jpg","DSC02161.jpg","DSC02183.jpg","DSC02202.jpg","DSC02343.jpg","DSC02348.jpg","DSC02350.jpg","DSC02355.jpg","DSC02360.jpg","DSC02381.jpg","DSC02424.jpg","DSC02431.jpg","DSC02529.jpg","DSC02534.jpg","DSC02538.jpg","DSC02587.jpg","DSC02591.jpg","DSC02595.jpg","DSC02610.jpg","DSC02843.jpg","DSC02873.jpg","DSC02880.jpg","DSC02882.jpg","DSC02899.jpg","DSC02911.jpg","DSC02932.jpg","DSC02937.jpg","DSC02954.jpg","DSC02967.jpg","DSC02986.jpg","DSC02990.jpg","DSC03040.jpg","DSC05000.jpg","DSC05016.jpg","DSC05018.jpg","DSC05021.jpg","DSC05022.jpg","DSC05027.jpg","DSC05031.jpg","DSC05041.jpg","DSC05042.jpg","DSC05095.jpg","DSC05098.jpg","DSC05100.jpg","DSC05110.jpg","DSC05121.jpg","DSC05131.jpg","DSC05142.jpg","DSC05145.jpg","DSC05148.jpg","DSC05154.jpg","DSC05178.jpg","DSC05179.jpg","DSC05194.jpg","DSC05208.jpg","DSC05214.jpg","DSC05216.jpg","DSC05218.jpg","DSC05219.jpg","DSC05229.jpg","DSC05232.jpg","DSC05242.jpg","DSC05248.jpg","DSC05254.jpg","DSC05256.jpg","DSC05262.jpg","DSC05265.jpg","DSC05306.jpg","DSC05316.jpg","DSC05320.jpg","DSC05322.jpg","DSC05333.jpg","DSC05335.jpg","DSC05344.jpg","DSC05349.jpg","DSC05353.jpg","DSC05356.jpg","DSC05360.jpg","DSC05361.jpg","DSC05363.jpg","DSC05366.jpg","DSC05368.jpg","DSC05370.jpg","DSC05373.jpg","DSC05376.jpg","DSC05382.jpg","DSC05390.jpg","DSC05392.jpg","DSC05394.jpg","DSC05396.jpg","DSC05400.jpg","DSC05615.jpg","DSC05621.jpg","DSC05629.jpg","DSC05639.jpg","DSC05642.jpg","DSC05746.jpg","DSC05750.jpg","DSC05756.jpg","DSC07554.jpg","DSC07558.jpg","DSC07560.jpg","DSC07571.jpg","DSC07575.jpg","DSC07582.jpg","DSC09726.jpg","DSC09728.jpg","DSC09734.jpg","DSC09740.jpg","DSC09743.jpg","DSC09745.jpg","DSC09752.jpg","DSC09762.jpg","DSC09765.jpg","DSC09768.jpg","DSC09770.jpg","DSC09777.jpg","DSC09783.jpg","DSC09792.jpg","DSC09800.jpg","DSC09861.jpg","DSC09868.jpg","DSC09871.jpg","DSC09872.jpg","DSC09880.jpg","DSC09886.jpg","Photo Aug 05 2025, 7 47 09 PM.jpg","Photo Aug 05 2025, 7 48 59 PM.jpg","Photo Aug 05 2025, 7 49 27 PM.jpg","Photo Aug 05 2025, 7 49 55 PM.jpg","Photo Aug 05 2025, 7 52 32 PM.jpg","Photo Aug 05 2025, 7 53 37 PM.jpg","Photo Aug 05 2025, 7 58 33 PM.jpg","Photo Aug 24 2025, 6 09 39 PM.jpg","Photo Aug 24 2025, 6 10 19 PM.jpg","Photo Aug 24 2025, 6 12 07 PM.jpg","Photo Aug 24 2025, 6 17 06 PM.jpg","Photo Mar 11 2025, 2 10 56 PM.jpg","Photo Mar 11 2025, 2 11 20 PM.jpg","Photo Mar 11 2025, 2 11 49 PM.jpg","Photo Mar 11 2025, 2 11 59 PM.jpg","Photo Mar 11 2025, 2 12 03 PM.jpg","Photo Mar 11 2025, 2 12 18 PM.jpg","Photo Mar 11 2025, 2 12 40 PM.jpg","Photo Mar 11 2025, 2 12 50 PM.jpg","Reggie x Flight Way-10.jpg","Reggie x Flight Way-13.jpg","Reggie x Flight Way-14.jpg","Reggie x Flight Way-15.jpg","Reggie x Flight Way-3.jpg","Reggie x Flight Way-4.jpg","Reggie x Flight Way-5.jpg","Reggie x Flight Way-9.jpg"];
+
+const REELS = [
+  {id:"wApVG5I14nQ",title:"SF90XX"},
+  {id:"zTm9RfQeWbM",title:"S2000 & Type R!"},
+  {id:"pPmzzUxA3F0",title:"Orange GT3RS"},
+  {id:"sS0m7_bCQp8",title:"NFR S2000"},
+  {id:"yMG_d2UW88A",title:"Type R's V2"},
+  {id:"EOZhyp1XrSU",title:"Cars & Chronos F1 Car"},
+  {id:"Bk-K4PE7Isc",title:"Tanzanite ADRO BMW M4"},
+  {id:"uueenNP0Xds",title:"Porsche Track Car"},
+  {id:"zA62ZBoXpeQ",title:"PClub GT3 — Lyon Air Museum"},
+  {id:"qkojw9ryijY",title:"Audi R8!"},
+  {id:"Ss26q1NIJFc",title:"Ferrari SF90 Blue"},
+  {id:"zVLVtFs2EdA",title:"Honda S2000 Track Edition"},
+  {id:"zvADty084xQ",title:"Audi R8 PPF!"},
+  {id:"IIQmcnnb6jA",title:"Sterling BMW M2"},
+  {id:"gEnZMBdNsL4",title:"Ferrari SP3 Daytona"},
+  {id:"3LcKH4Q8aig",title:"BMW M3 Rebuild"},
+  {id:"Ad50ChV3rxs",title:"R34 GTR Track Build"},
+  {id:"-3dpMshhJgQ",title:"McLaren 600LT Maintenance"},
+  {id:"UDXbOINXVZo",title:"BMW 3 Series Rebuild"},
+  {id:"deym66V1OYo",title:"Pagani Huayra"},
+  {id:"Nicjhgu80rg",title:"Porsche Lineup — PFS Event"},
+  {id:"upqFMM_ceWo",title:"David Lee Ferrari Collection"},
+  {id:"cD5B4LJSwqg",title:"Detailing Lamborghini Revuelto"},
+  {id:"aHhscrr3Mgw",title:"BMW M3 Comp Blue"},
+  {id:"IGOS-Ka-5oo",title:"Gloss Red McLaren 750S"},
+  {id:"uG9D7RrfgNw",title:"Detailing Ferrari Daytona SP3"},
+  {id:"dCaySnCpUEQ",title:"McLaren Green"}
+];
+
+// ── Reels ─────────────────────────────────────────────────────────────
+const reelTrack = document.getElementById('reel-track');
+REELS.forEach(r => {
+  reelTrack.innerHTML += `
+    <div class="reel-item flex-none w-[230px] md:w-[270px]">
+      <div class="relative aspect-[9/16] bg-concrete overflow-hidden" style="clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),0 100%)">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/${r.id}?rel=0&modestbranding=1&playsinline=1"
+          title="${r.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="mt-3 font-display font-700 uppercase tracking-widest text-xs text-chalk">${r.title}</p>
+    </div>`;
+});
+
+// ── Gallery ───────────────────────────────────────────────────────────
+const grid = document.getElementById('gallery-grid');
+const loadMoreBtn = document.getElementById('load-more');
+const countEl = document.getElementById('gallery-count');
+const PAGE = 24;
+let shown = 0;
+let currentIdx = 0;
+
+function encPath(f) { return 'media/photos/' + encodeURIComponent(f); }
+
+function renderBatch() {
+  const batch = PHOTOS.slice(shown, shown + PAGE);
+  batch.forEach((f, i) => {
+    const idx = shown + i;
+    const card = document.createElement('div');
+    card.className = 'reveal group relative aspect-[4/5] overflow-hidden bg-asphalt cursor-pointer';
+    card.innerHTML = `<img data-src="${encPath(f)}" alt="Automotive photo ${idx+1}"
+        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-0"
+        loading="lazy" onload="this.classList.add('opacity-100');this.style.transition='opacity .4s'">
+      <div class="absolute inset-0 bg-gradient-to-t from-asphalt/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>`;
+    card.addEventListener('click', () => openLightbox(idx));
+    grid.appendChild(card);
+
+    // Lazy load via IntersectionObserver
+    const img = card.querySelector('img');
+    imgObserver.observe(img);
+    // Reveal animation
+    setTimeout(() => revealObserver.observe(card), 10);
+  });
+
+  shown += batch.length;
+  countEl.textContent = `Showing ${shown} of ${PHOTOS.length}`;
+  if (shown >= PHOTOS.length) loadMoreBtn.style.display = 'none';
+}
+
+const imgObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const img = e.target;
+      img.src = img.dataset.src;
+      imgObserver.unobserve(img);
+    }
+  });
+}, { rootMargin: '200px' });
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+
+loadMoreBtn.addEventListener('click', renderBatch);
+renderBatch(); // Initial load
+
+// ── Lightbox ──────────────────────────────────────────────────────────
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+function openLightbox(idx) {
+  currentIdx = idx;
+  lbImg.src = encPath(PHOTOS[idx]);
+  lbImg.alt = PHOTOS[idx];
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function stepLightbox(dir) {
+  currentIdx = (currentIdx + dir + PHOTOS.length) % PHOTOS.length;
+  lbImg.src = encPath(PHOTOS[currentIdx]);
+  // Auto-load more if user navigates past shown
+  if (currentIdx >= shown - 2) renderBatch();
+}
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') stepLightbox(-1);
+  if (e.key === 'ArrowRight') stepLightbox(1);
+});
+
+// ── Misc ──────────────────────────────────────────────────────────────
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
